@@ -6,6 +6,7 @@ import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,11 @@ public class SampleViewTest {
 		bot.waitUntil(shellCloses(dialog));
 	}
 
+	@AfterClass
+	public static void afterClass() {
+		bot.resetWorkbench();
+	}
+
 	@Test
 	public void testViewTree() {
 		SWTBotView view = bot.viewByTitle("Sample View");
@@ -37,4 +43,35 @@ public class SampleViewTest {
 			getNode("Leaf 1").select();
 	}
 
+	@Test
+	public void testViewTreeDoubleClick() {
+		SWTBotView view = bot.viewByTitle("Sample View");
+		view.bot().tree().getTreeItem("Root").doubleClick();
+		assertDialog("Double-click detected on Root");
+	}
+
+	@Test
+	public void testViewToolbar() {
+		bot.viewByTitle("Sample View");
+		bot.toolbarButtonWithTooltip("Action 1 tooltip").click();
+		assertDialog("Action 1 executed");
+		bot.toolbarButtonWithTooltip("Action 2 tooltip").click();
+		assertDialog("Action 2 executed");
+	}
+
+	@Test
+	public void testViewTreeContextMenu() {
+		SWTBotView view = bot.viewByTitle("Sample View");
+		view.bot().tree().getTreeItem("Root").
+			contextMenu("Action 1").click();
+		assertDialog("Action 1 executed");
+	}
+
+	private void assertDialog(String labelInDialog) {
+		SWTBotShell dialog = bot.shell("Sample View");
+		dialog.activate();
+		bot.label(labelInDialog);
+		bot.button("OK").click();
+		bot.waitUntil(shellCloses(dialog));
+	}
 }
