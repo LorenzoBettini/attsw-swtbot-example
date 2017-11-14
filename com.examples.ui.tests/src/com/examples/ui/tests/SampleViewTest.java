@@ -32,6 +32,7 @@ public class SampleViewTest {
 	@AfterClass
 	public static void afterClass() {
 		bot.resetWorkbench();
+		bot.viewByTitle("Sample View").close();
 	}
 
 	@Test

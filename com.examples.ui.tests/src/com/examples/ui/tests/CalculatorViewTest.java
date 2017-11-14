@@ -34,6 +34,7 @@ public class CalculatorViewTest {
 	@AfterClass
 	public static void afterClass() {
 		bot.resetWorkbench();
+		bot.viewByTitle("Calculator View").close();
 	}
 
 	@Test
