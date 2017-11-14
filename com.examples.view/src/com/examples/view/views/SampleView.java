@@ -165,6 +165,7 @@ public class SampleView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
+		workbench = PlatformUI.getWorkbench();
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		drillDownAdapter = new DrillDownAdapter(viewer);
 		
@@ -227,7 +228,7 @@ public class SampleView extends ViewPart {
 		};
 		action1.setText("Action 1");
 		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+		action1.setImageDescriptor(workbench.getSharedImages().
 			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
 		
 		action2 = new Action() {
