@@ -8,6 +8,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class CalculatorView extends ViewPart {
 	private Text inputText;
@@ -28,6 +30,14 @@ public class CalculatorView extends ViewPart {
 		inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Button btnNewButton = new Button(parent, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String input = inputText.getText();
+				int inputValue = Integer.parseInt(input);
+				outputText.setText(""+(inputValue*2));
+			}
+		});
 		btnNewButton.setText("Double");
 		
 		Label lblNewLabel_1 = new Label(parent, SWT.NONE);
