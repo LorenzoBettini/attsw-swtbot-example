@@ -2,6 +2,7 @@ package com.examples.ui.tests;
 
 import static org.eclipse.swtbot.swt.finder.waits.Conditions.shellCloses;
 
+import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,10 +22,12 @@ public class SampleViewTest extends AbstractTest {
 	}
 
 	@Test
-	public void test() {
-		// fictitious test just to run this class as a JUnit test
-		// and check that the @BeforeClass method can be executed
-		// without failure.
+	public void testViewTree() {
+		SWTBotView view = bot.viewByTitle("Sample View");
+		view.bot().tree().getTreeItem("Root").expand();
+		view.bot().tree().getTreeItem("Root").getNode("Parent 1").expand();
+		view.bot().tree().getTreeItem("Root").getNode("Parent 1").
+			getNode("Leaf 1").select();
 	}
 
 }
