@@ -19,6 +19,7 @@ public class SampleViewTest {
 	@BeforeClass
 	public static void initBot() throws InterruptedException {
 		bot = new SWTWorkbenchBot();
+		closeWelcomePage();
 		// Open our view using the Eclipse Show View dialog
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell dialog = bot.shell("Show View");
@@ -27,6 +28,14 @@ public class SampleViewTest {
 		bot.tree().expandNode("Sample Category").getNode("Sample View").select();
 		bot.button("Open").click();
 		bot.waitUntil(shellCloses(dialog));
+	}
+
+	private static void closeWelcomePage() {
+		for (SWTBotView view : bot.views()) {
+			if (view.getTitle().equals("Welcome")) {
+				view.close();
+			}
+		}
 	}
 
 	@AfterClass
