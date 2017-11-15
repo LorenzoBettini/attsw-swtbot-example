@@ -1,15 +1,15 @@
 package com.examples.view;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.ViewPart;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.part.ViewPart;
 
 public class CalculatorView extends ViewPart {
 	private Text inputText;
@@ -29,8 +29,8 @@ public class CalculatorView extends ViewPart {
 		inputText = new Text(parent, SWT.BORDER);
 		inputText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		Button btnNewButton = new Button(parent, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		Button btnDouble = new Button(parent, SWT.NONE);
+		btnDouble.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String input = inputText.getText();
@@ -38,7 +38,7 @@ public class CalculatorView extends ViewPart {
 				outputText.setText(""+(inputValue*2));
 			}
 		});
-		btnNewButton.setText("Double");
+		btnDouble.setText("Double");
 		
 		Label lblNewLabel_1 = new Label(parent, SWT.NONE);
 		lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));

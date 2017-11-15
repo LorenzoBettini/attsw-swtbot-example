@@ -1,0 +1,12 @@
+target "SWTBot Example Target Platform Photon"
+
+with requirements source
+
+location "http://download.eclipse.org/releases/photon/201711031000" {
+	org.eclipse.platform.feature.group lazy
+}
+
+location "http://download.eclipse.org/technology/swtbot/releases/latest" {
+	org.eclipse.swtbot.ide.feature.group lazy
+	org.eclipse.swtbot.eclipse.feature.group lazy
+}

@@ -24,7 +24,7 @@ public class SampleViewTest extends AbstractTest {
 
 	@AfterClass
 	public static void closeView() {
-		bot.viewByTitle("Sample View").close();
+		bot.viewByTitle("Sample View");
 	}
 
 	@Test

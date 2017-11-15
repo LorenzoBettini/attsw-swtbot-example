@@ -12,7 +12,7 @@ import org.junit.Test;
 public class CalculatorViewTest extends AbstractTest {
 
 	@BeforeClass
-	public static void initView() {
+	public static void initView() throws InterruptedException {
 		// Open our view using the Eclipse Show View dialog
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell dialog = bot.shell("Show View");
