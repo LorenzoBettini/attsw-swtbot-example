@@ -3,6 +3,7 @@ package com.examples.ui.tests;
 import static org.eclipse.swtbot.swt.finder.waits.Conditions.shellCloses;
 
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
+import org.eclipse.swtbot.swt.finder.keyboard.Keystrokes;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -18,7 +19,10 @@ public class SampleViewTest extends AbstractTest {
 		dialog.activate();
 		// our view is in Sample Category
 		bot.tree().expandNode("Sample Category").getNode("Sample View").select();
-		bot.button("Open").click();
+		// this won't work in Neon, since that button was "OK"
+		// bot.button("Open").click();
+		// we achieve the same goal by simulating pressing ENTER:
+		dialog.pressShortcut(Keystrokes.CR);
 		bot.waitUntil(shellCloses(dialog));
 	}
 
