@@ -22,7 +22,6 @@
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.jdt.ui"/>
       <import feature="org.eclipse.rcp"/>
    </requires>
 
